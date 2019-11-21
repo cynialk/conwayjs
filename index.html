@@ -5,19 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <title>Pathfinding</title>
+
+    <title>Conway's game of life</title>
   </head>
-  <body ondragstart="return false;" ondrop="return false;" onmousedown="mouseDown(event);" class="bg-dark">
 
-    <button oncontextmenu="return false;" class="btn btn-danger" onclick="refresh_grid()" >Reset Life</button>
+  <body class="bg-dark" oncontextmenu="return false;" ondragstart="return false;" ondrop="return false;" onmousedown="mouseDown(event);">
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/e7a2e635f6.js" crossorigin="anonymous"></script>
+    <button class="btn btn-danger" onclick="refresh_grid()">Reset Life</button>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
