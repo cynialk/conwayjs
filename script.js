@@ -24,7 +24,7 @@ function mouseDown(e) {
   }
 
 
-function neighboring_cells(pos, findWith){
+function neighboring_cells(pos, findWith="alive"){
     let cellsFound = [];
     for (let x = pos[0]-1; x <= pos[0]+1;x++){
         for (let y = pos[1]-1; y <= pos[1]+1;y++){
@@ -38,7 +38,7 @@ function neighboring_cells(pos, findWith){
 }
 
 function conways(tile){
-    const neighboringAliveCells = neighboring_cells(tile.id.split("_"), "alive");
+    const neighboringAliveCells = neighboring_cells(tile.id.split("_"));
     if ((neighboringAliveCells.length == 2 || neighboringAliveCells == 3) && tile.classList.contains("alive")){
         tile.classList.add("alive");
         return;
