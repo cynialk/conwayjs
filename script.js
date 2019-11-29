@@ -104,7 +104,6 @@ function generation_step(step_function) {
     for (let index = 0; index < alive_tiles.length; index++) {
         const tile = alive_tiles[index];
 
-        //neighbors = neigboring_cells(tile.id.split("_"), "alive");
         step_function(tile);
         
     }
