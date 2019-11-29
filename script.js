@@ -26,15 +26,18 @@ function mouseDown(e) {
 
 function neighboring_cells(pos, findWith){
     let cellsFound = [];
-    for (let x = pos[0]-1; x <= pos[0]+1;x++){
-        for (let y = pos[1]-1; y <= pos[1]+1;y++){
-            const lookOnTile = document.getElementById(x+"_"+y);
-            console.log(x + "_" + y + lookOnTile);
+
+    for (let x = (pos[0]-1); x <= (pos[0]+1); x++){
+        for (let y = (pos[1]-1); y <= (pos[1]+1); y++){
+
+            const lookOnTile = document.getElementById(x + "_" + y);
+            
             if (lookOnTile.classList.contains(findWith)){
                 cellsFound.push(lookOnTile);
             }
         } 
     }
+    return cellsFound;
 }
 
 function conways(tile){
@@ -68,7 +71,7 @@ function create_grid(size) {
             td.classList.add("empty");
             td.id = x + "_" + y;
             td.addEventListener('mousemove', function() {interact_with_tile(this, "alive", isRightClick)});
-            td.addEventListener('click', function() {interact_with_tile(this, "alive", isRightClick)});
+            td.addEventListener('click', function() {interact_with_tile(this, "alive", isRightClick, clicked=true)});
 
             tr.appendChild(td);
         }
@@ -79,10 +82,17 @@ function create_grid(size) {
 
 create_grid([100, 100]);
 
-function interact_with_tile(tile, type, isRightClick) {
+function interact_with_tile(tile, type, isRightClick, clicked=false) {
 
-    if (isMouseDown) {
+    if (isMouseDown || clicked || isRightClick) {
         if (isRightClick) {
+            let neighbors = neighboring_cells(tile.id.split("_"), "alive");
+
+            for (let index = 0; index < neighbors.length; index++) {
+                const element = neighbors[index];
+                element.className = "empty";
+                
+            }
             tile.className = "empty";
             return true;
         }
