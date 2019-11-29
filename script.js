@@ -1,28 +1,15 @@
-function neigboring_cells(pos, findWith) {
-    return
-}
 
+function neighboring_cells(pos, findWith){
+    let cellsFound = [];
+    for (let x = pos[0]-1; x < pos[0]+1;x++){
+        for (let y = pos[1]-1; y < pos[1]+1;y++){
+            const lookOnTile = document.getElementById(x+"_"+y);
+            console.log(x + "_" + y + lookOnTile);
+            if (lookOnTile.classList.contains(findWith)){
+                cellsFound.push(lookOnTile);
+            }
+        } 
 
-//bingding chingping
-//Hello its me
-
-//
-class Tile {
-    constructor(coordinates){
-        this.position = coordinates;
-        this.state = "empty";
-    }
-
-    changeState(toState){
-        this.state = toState;
-    }
-}
-
-class Simulation {
-    constructor(board, size){
-        
-    }
-}
 
 function create_grid(size) {
     x_size = size[0];
@@ -38,6 +25,7 @@ function create_grid(size) {
             td.classList.add("empty");
             td.id = x + "_" + y;
             tr.appendChild(td);
+            td.id = x + "_" + y;
         }
         table.appendChild(tr);
     }
