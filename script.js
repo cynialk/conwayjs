@@ -9,7 +9,8 @@ function neighboring_cells(pos, findWith){
                 cellsFound.push(lookOnTile);
             }
         } 
-
+    }
+}
 
 function create_grid(size) {
     x_size = size[0];
