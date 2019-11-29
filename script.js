@@ -11,7 +11,9 @@ function create_grid(size) {
         for (let x = 0; x < x_size; x++) {
             let td = document.createElement('td');
             td.classList.add("empty");
+            td.id = x + " " + y;
             tr.appendChild(td);
+
         }
         table.appendChild(tr);
     }
@@ -19,3 +21,17 @@ function create_grid(size) {
 }
 
 create_grid([100, 100]);
+
+function place_object(pos, type) {
+    x = pos[0];
+    y = pos[1];
+
+    tile = document.querySelector("#" + x + " " + y);
+
+    if (tile.classList.contains("empty")) {
+        tile.classList.remove("empty");
+    }
+
+    tile.classList.add(type);
+}
+
