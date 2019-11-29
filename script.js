@@ -1,3 +1,7 @@
+function neigboring_cells(pos, findWith) {
+    return
+}
+
 
 //bingding chingping
 //Hello its me
@@ -32,6 +36,7 @@ function create_grid(size) {
         for (let x = 0; x < x_size; x++) {
             let td = document.createElement('td');
             td.classList.add("empty");
+            td.id = x + "_" + y;
             tr.appendChild(td);
         }
         table.appendChild(tr);
@@ -40,3 +45,26 @@ function create_grid(size) {
 }
 
 create_grid([100, 100]);
+
+function place_object(pos, type) {
+    x = pos[0];
+    y = pos[1];
+
+    tile = document.getElementById(x + "_" + y);
+
+    if (tile.classList.contains("empty")) {
+        tile.classList.remove("empty");
+    }
+
+    tile.classList.add(type);
+}
+
+function generation_step() {
+    alive_tiles = document.querySelectorAll(".alive");
+    for (let index = 0; index < alive_tiles.length; index++) {
+        const tile = alive_tiles[index];
+
+        neighbors = neigboring_cells(tile.id.split("_"), "alive");
+        
+    }
+}
