@@ -12,6 +12,23 @@ function neighboring_cells(pos, findWith){
     }
 }
 
+function conways(tile){
+    const neighboringAliveCells = neighboring_cells(tile.id.split("_"), "alive");
+    if ((neighboringAliveCells.length == 2 || neighboringAliveCells == 3) && tile.classList.contains("alive")){
+        tile.classList.add("alive");
+        return;
+    }
+    else if (neighboringAliveCells >= 3 && tile.classList.contains("empty")){
+        tile.classList.remove("empty");
+        tile.classList.add("alive");
+        return;
+    }
+    else {
+        tile.classList.remove("alive");
+        tile.classList.add("empty");
+    }
+}
+
 function create_grid(size) {
     x_size = size[0];
     y_size = size[1];
@@ -53,7 +70,7 @@ function generation_step() {
     for (let index = 0; index < alive_tiles.length; index++) {
         const tile = alive_tiles[index];
 
-        neighbors = neigboring_cells(tile.id.split("_"), "alive");
+        //neighbors = neigboring_cells(tile.id.split("_"), "alive");
         
     }
 }
