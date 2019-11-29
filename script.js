@@ -1,3 +1,27 @@
+let isRightClick = false;
+
+document.onmousedown = () => isMouseDown = true; ;
+document.onmouseup   = function() { isMouseDown = false; isRightClick = false; };
+
+window.oncontextmenu = function ()
+{
+    return false;     // cancel default menu
+}
+
+function mouseDown(e) {
+    e = e || window.event;
+    if ( !e.which && e.button !== undefined ) {
+      e.which = ( e.button & 1 ? 1 : ( e.button & 2 ? 3 : ( e.button & 4 ? 2 : 0 ) ) );
+    }
+    if (e.which === 1) {
+        isRightClick = false;
+    }
+  
+    else if (e.which === 3) {
+        isRightClick = true;
+    }
+  }
+
 
 function neighboring_cells(pos, findWith){
     let cellsFound = [];
@@ -42,8 +66,10 @@ function create_grid(size) {
             let td = document.createElement('td');
             td.classList.add("empty");
             td.id = x + "_" + y;
+            td.addEventListener('mousemove', function() {interact_with_tile(this, "alive", isRightClick)});
+            td.addEventListener('click', function() {interact_with_tile(this, "alive", isRightClick)});
+
             tr.appendChild(td);
-            td.id = x + "_" + y;
         }
         table.appendChild(tr);
     }
@@ -52,27 +78,49 @@ function create_grid(size) {
 
 create_grid([100, 100]);
 
-function place_object(pos, type) {
-    x = pos[0];
-    y = pos[1];
+function interact_with_tile(tile, type, isRightClick) {
 
-    tile = document.getElementById(x + "_" + y);
-
-    if (tile.classList.contains("empty")) {
-        tile.classList.remove("empty");
+    if (isMouseDown) {
+        if (isRightClick) {
+            tile.className = "empty";
+            return true;
+        }
+    
+        if (tile.classList.contains("empty")) {
+            tile.classList.remove("empty");
+        }
+    
+        tile.classList.add(type);
+        return true;
+    }
+    else {
+        return false;
     }
 
-    tile.classList.add(type);
 }
 
-function generation_step() {
+function generation_step(step_function) {
     alive_tiles = document.querySelectorAll(".alive");
     for (let index = 0; index < alive_tiles.length; index++) {
         const tile = alive_tiles[index];
 
         //neighbors = neigboring_cells(tile.id.split("_"), "alive");
+        step_function(tile);
         
     }
 }
 
-neighboring_cells([10,10],"empty");
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
