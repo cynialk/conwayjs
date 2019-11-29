@@ -9,3 +9,7 @@ body {
 table tr td:hover {
     background-color: #AF3B6E;
 }
+
+.alive {
+    background-color: #912F56;
+}
