@@ -1,4 +1,5 @@
 let isRightClick = false;
+let isMouseDown = false;
 
 document.onmousedown = () => isMouseDown = true; ;
 document.onmouseup   = function() { isMouseDown = false; isRightClick = false; };
