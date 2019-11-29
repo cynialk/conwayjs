@@ -1,24 +1,17 @@
-
-//bingding chingping
-//Hello its me
-
-//
-class Tile {
-    constructor(coordinates){
-        this.position = coordinates;
-        this.state = "empty";
+function neighboring_cells(pos, findWith){
+    let cellsFound = [];
+    for (let x = pos[0]-1; x < pos[0]+1;x++){
+        for (let y = pos[1]-1; y < pos[1]+1;y++){
+            const lookOnTile = document.querySelector("#" + x + " " + y );
+            console.log(x + " " + y + lookOnTile);
+            if (lookOnTile.classList.contains(findWith)){
+                cellsFound.push(lookOnTile);
+            }
+        } 
     }
-
-    changeState(toState){
-        this.state = toState;
-    }
+    return cellsFound;
 }
 
-class Simulation {
-    constructor(board, size){
-        
-    }
-}
 
 function create_grid(size) {
     x_size = size[0];
@@ -40,3 +33,4 @@ function create_grid(size) {
 }
 
 create_grid([100, 100]);
+neighboring_cells([10,10],"empty");
