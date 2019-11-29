@@ -2,8 +2,8 @@ function neighboring_cells(pos, findWith){
     let cellsFound = [];
     for (let x = pos[0]-1; x < pos[0]+1;x++){
         for (let y = pos[1]-1; y < pos[1]+1;y++){
-            const lookOnTile = document.querySelector("#" + x + " " + y );
-            console.log(x + " " + y + lookOnTile);
+            const lookOnTile = document.getElementById(x+"_"+y);
+            console.log(x + "_" + y + lookOnTile);
             if (lookOnTile.classList.contains(findWith)){
                 cellsFound.push(lookOnTile);
             }
@@ -26,6 +26,7 @@ function create_grid(size) {
             let td = document.createElement('td');
             td.classList.add("empty");
             tr.appendChild(td);
+            td.id = x + "_" + y;
         }
         table.appendChild(tr);
     }
