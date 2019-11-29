@@ -9,6 +9,8 @@ function neighboring_cells(pos, findWith){
                 cellsFound.push(lookOnTile);
             }
         } 
+    }
+}
 
 
 function create_grid(size) {
@@ -47,12 +49,14 @@ function place_object(pos, type) {
     tile.classList.add(type);
 }
 
-function generation_step() {
+
+
+function generation_step(step_function) {
     alive_tiles = document.querySelectorAll(".alive");
     for (let index = 0; index < alive_tiles.length; index++) {
         const tile = alive_tiles[index];
 
-        neighbors = neigboring_cells(tile.id.split("_"), "alive");
+        step_function(tile);
         
     }
 }
